@@ -1,0 +1,21 @@
+{
+  "name": "malevuszoda",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Budapest swimming pool watcher - an agent that tracks which pools are open, closed, under renovation, and actually swimmable.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "geocode": "node scripts/geocode.mjs",
+    "agent": "node scripts/agent.mjs",
+    "agent:dry": "node scripts/agent.mjs --dry-run",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.125.0",
+    "zod": "^4.6.5"
+  }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Malevuszoda – budapesti uszodafigyelő</title>
+<meta name="description" content="Melyik budapesti uszoda van nyitva, melyik áll felújítás alatt, és hol lehet tényleg úszni? Egy ügynök gyűjti az adatokat.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏊</text></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">🏊</span>
+    <div>
+      <h1>Malevuszoda</h1>
+      <p class="tagline" data-i18n="tagline">Budapesti uszodafigyelő – hol lehet ma tényleg úszni?</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <p class="freshness" id="freshness" aria-live="polite"></p>
+    <div class="lang" role="group" aria-label="Nyelv / Language">
+      <button type="button" data-lang="hu" class="active">HU</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div id="notice" class="notice" hidden></div>
+
+<main class="layout">
+  <section class="panel" aria-label="Uszodák">
+    <div class="filters">
+      <label class="check">
+        <input type="checkbox" id="f-swimmable">
+        <span data-i18n="f_swimmable">Csak ahol lehet úszni</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="f-50m">
+        <span data-i18n="f_50m">Csak 50 m-es medence</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="f-indoor">
+        <span data-i18n="f_indoor">Csak fedett</span>
+      </label>
+      <select id="f-kind" aria-label="Típus">
+        <option value="" data-i18n="kind_all">Minden típus</option>
+        <option value="sportuszoda" data-i18n="kind_sport">Sportuszoda</option>
+        <option value="uszoda" data-i18n="kind_uszoda">Uszoda</option>
+        <option value="gyogyfurdo" data-i18n="kind_gyogy">Gyógyfürdő</option>
+        <option value="strand" data-i18n="kind_strand">Strand</option>
+      </select>
+      <select id="f-area" aria-label="Terület">
+        <option value="" data-i18n="area_all">Budapest és környéke</option>
+        <option value="budapest" data-i18n="area_bp">Csak Budapest</option>
+        <option value="agglo" data-i18n="area_agglo">Csak agglomeráció</option>
+      </select>
+    </div>
+    <p class="result-count" id="result-count"></p>
+    <ul class="pool-list" id="pool-list"></ul>
+  </section>
+
+  <section class="map-wrap" aria-label="Térkép">
+    <div id="map"></div>
+  </section>
+
+  <aside class="detail" id="detail" hidden aria-live="polite"></aside>
+</main>
+
+<footer class="footer">
+  <p data-i18n="footer_how">
+    Az adatokat egy ügynök gyűjti a uszodák saját oldalairól és hírforrásokból. Amit nem talál meg, azt
+    <strong>nem találja ki</strong> – az „nincs adat” marad. Indulás előtt érdemes telefonon ellenőrizni.
+  </p>
+  <p class="attrib">
+    Térkép © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> közreműködők ·
+    <a href="https://github.com/eshton/malevuszoda">Forráskód</a>
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+name: Pool watcher
+
+# Runs the agent on a schedule and commits whatever it learned. The site is plain
+# files in docs/, so a commit here is a deploy.
+on:
+  schedule:
+    # Once a day, 05:10 UTC. A full run costs real money (see README > Cost), and
+    # renovations and timetable changes are announced days ahead, not hourly.
+    - cron: "10 5 * * *"
+  workflow_dispatch:
+    inputs:
+      regeocode:
+        description: "Also re-resolve coordinates from OpenStreetMap"
+        type: boolean
+        default: false
+      only:
+        description: "Research a single pool id (leave empty for all)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pool-watcher
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Re-resolve coordinates
+        if: inputs.regeocode
+        run: npm run geocode
+
+      - name: Research pool statuses
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set - add it in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          if [ -n "${{ inputs.only }}" ]; then
+            npm run agent -- --only "${{ inputs.only }}"
+          else
+            npm run agent
+          fi
+
+      - name: Publish registry into the site
+        run: npm run build
+
+      - name: Commit changes
+        run: |
+          git config user.name  "pool-watcher[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs/data
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(data): pool status refresh $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

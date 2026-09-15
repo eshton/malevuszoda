@@ -1,0 +1,532 @@
+{
+  "$comment": "Curated seed registry of swimming venues in Budapest and the agglomeration. Hand-maintained. Coordinates and postal addresses are NOT stored here - they are resolved from OpenStreetMap/Nominatim by `npm run geocode`, which writes data/pools.json. Only fields we are confident about are filled in; anything unknown is null and left for the agent or a human to fill.",
+  "version": 1,
+  "pools": [
+    {
+      "id": "szechenyi",
+      "name": "Széchenyi Gyógyfürdő és Uszoda",
+      "shortName": "Széchenyi",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "XIV",
+      "geoQuery": "Széchenyi gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.szechenyifurdo.hu/",
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "thermal",
+        "outdoor-lane-pool",
+        "tourist-heavy",
+        "year-round"
+      ],
+      "swimmerNote": "The 50 m outdoor lane pool is the swimmable part; the thermal circles are not for laps. Heavy tourist load."
+    },
+    {
+      "id": "gellert",
+      "name": "Gellért Gyógyfürdő és Uszoda",
+      "shortName": "Gellért",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "XI",
+      "geoQuery": "Gellért gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.gellertfurdo.hu/",
+      "lanePool": {
+        "lengthM": 33,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "thermal",
+        "indoor-lane-pool",
+        "tourist-heavy",
+        "heritage"
+      ],
+      "swimmerNote": "Indoor hall pool is short-course and usually busy with non-swimmers."
+    },
+    {
+      "id": "rudas",
+      "name": "Rudas Gyógyfürdő és Uszoda",
+      "shortName": "Rudas",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "I",
+      "geoQuery": "Rudas gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.rudasfurdo.hu/",
+      "lanePool": {
+        "lengthM": 33,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "thermal",
+        "indoor-lane-pool",
+        "rooftop-pool",
+        "gendered-days"
+      ],
+      "swimmerNote": "Check gendered-day rules for the Turkish bath section; the lane pool is separate."
+    },
+    {
+      "id": "lukacs",
+      "name": "Lukács Gyógyfürdő és Uszoda",
+      "shortName": "Lukács",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "II",
+      "geoQuery": "Lukács gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.lukacsfurdo.hu/",
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "thermal",
+        "outdoor-lane-pool",
+        "locals",
+        "year-round"
+      ],
+      "swimmerNote": "A local favourite for actual swimming; two outdoor pools plus thermal."
+    },
+    {
+      "id": "kiraly",
+      "name": "Király Gyógyfürdő",
+      "shortName": "Király",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "II",
+      "geoQuery": "Király gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.kiralyfurdo.hu/",
+      "lanePool": null,
+      "tags": [
+        "thermal",
+        "heritage",
+        "no-lane-pool"
+      ],
+      "swimmerNote": "Historic Turkish bath, no lane pool - listed for completeness, not for training."
+    },
+    {
+      "id": "dandar",
+      "name": "Dandár Gyógyfürdő",
+      "shortName": "Dandár",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "IX",
+      "geoQuery": "Dandár gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.dandarfurdo.hu/",
+      "lanePool": {
+        "lengthM": 20,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "thermal",
+        "small",
+        "quiet"
+      ],
+      "swimmerNote": "Small neighbourhood bath. Short pool, rarely crowded."
+    },
+    {
+      "id": "palatinus",
+      "name": "Palatinus Strandfürdő",
+      "shortName": "Palatinus",
+      "kind": "strand",
+      "city": "Budapest",
+      "district": "XIII",
+      "geoQuery": "Palatinus strandfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.palatinusstrand.hu/",
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "lido",
+        "seasonal",
+        "margitsziget",
+        "family"
+      ],
+      "swimmerNote": "Big summer lido on Margaret Island; the 50 m pool is swimmable but shares space with families."
+    },
+    {
+      "id": "dagaly",
+      "name": "Dagály Strandfürdő és Uszoda",
+      "shortName": "Dagály",
+      "kind": "strand",
+      "city": "Budapest",
+      "district": "XIII",
+      "geoQuery": "Dagály strandfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.dagalyfurdo.hu/",
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "lido",
+        "outdoor-lane-pool",
+        "next-to-duna-arena"
+      ],
+      "swimmerNote": "Adjacent to Duna Aréna. Large site, several pools, real lane swimming available."
+    },
+    {
+      "id": "romai",
+      "name": "Római Strandfürdő",
+      "shortName": "Római",
+      "kind": "strand",
+      "city": "Budapest",
+      "district": "III",
+      "geoQuery": "Római strandfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.romaistrand.hu/",
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "lido",
+        "seasonal",
+        "obuda"
+      ],
+      "swimmerNote": "Summer-only lido in Óbuda."
+    },
+    {
+      "id": "csillaghegyi",
+      "name": "Csillaghegyi Árpád Forrásfürdő",
+      "shortName": "Csillaghegy",
+      "kind": "strand",
+      "city": "Budapest",
+      "district": "III",
+      "geoQuery": "Csillaghegyi strandfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.csillaghegyistrand.hu/",
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "lido",
+        "year-round",
+        "spring-fed",
+        "obuda"
+      ],
+      "swimmerNote": "Rebuilt with a year-round covered section; popular with serious swimmers."
+    },
+    {
+      "id": "paskal",
+      "name": "Paskál Gyógy- és Strandfürdő",
+      "shortName": "Paskál",
+      "kind": "strand",
+      "city": "Budapest",
+      "district": "XIV",
+      "geoQuery": "Paskál strandfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.paskalstrand.hu/",
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "lido",
+        "thermal",
+        "zuglo"
+      ],
+      "swimmerNote": "Mostly a leisure/thermal site; limited lane swimming."
+    },
+    {
+      "id": "pesterzsebeti",
+      "name": "Pesterzsébeti Jódos-Sós Gyógy- és Strandfürdő",
+      "shortName": "Pesterzsébet",
+      "kind": "gyogyfurdo",
+      "city": "Budapest",
+      "district": "XX",
+      "geoQuery": "Pesterzsébeti gyógyfürdő Budapest",
+      "operator": "Budapest Gyógyfürdői és Hévizei Zrt.",
+      "website": "https://www.pesterzsebetstrand.hu/",
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "thermal",
+        "iodine-salt",
+        "quiet"
+      ],
+      "swimmerNote": "Out-of-the-way, rarely crowded."
+    },
+    {
+      "id": "hajos-alfred",
+      "name": "Hajós Alfréd Nemzeti Sportuszoda",
+      "shortName": "Hajós Alfréd",
+      "kind": "sportuszoda",
+      "city": "Budapest",
+      "district": "XIII",
+      "geoQuery": "Hajós Alfréd Nemzeti Sportuszoda Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "competition",
+        "50m",
+        "margitsziget",
+        "club-heavy"
+      ],
+      "swimmerNote": "National competition venue on Margaret Island. Public lane time is often squeezed by clubs and events - exactly the case this site exists for."
+    },
+    {
+      "id": "csaszar-komjadi",
+      "name": "Császár-Komjádi Béla Sportuszoda",
+      "shortName": "Komjádi",
+      "kind": "sportuszoda",
+      "city": "Budapest",
+      "district": "II",
+      "geoQuery": "Komjádi uszoda Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "competition",
+        "50m",
+        "water-polo",
+        "club-heavy"
+      ],
+      "swimmerNote": "Serious swimmers' pool. Water polo and club training dominate large parts of the day."
+    },
+    {
+      "id": "duna-arena",
+      "name": "Duna Aréna",
+      "shortName": "Duna Aréna",
+      "kind": "sportuszoda",
+      "city": "Budapest",
+      "district": "XIII",
+      "geoQuery": "Duna Aréna Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "competition",
+        "50m",
+        "events",
+        "public-hours-limited"
+      ],
+      "swimmerNote": "World championship venue. Public swimming exists but closes for events - worth checking before travelling."
+    },
+    {
+      "id": "nyeki-imre",
+      "name": "Nyéki Imre Uszoda",
+      "shortName": "Nyéki Imre",
+      "kind": "uszoda",
+      "city": "Budapest",
+      "district": "XI",
+      "geoQuery": "Nyéki Imre Uszoda Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "municipal",
+        "ujbuda",
+        "school-groups"
+      ],
+      "swimmerNote": "District pool in Újbuda; school groups take lanes on weekday mornings."
+    },
+    {
+      "id": "gyarmati-dezso",
+      "name": "Gyarmati Dezső Sportuszoda",
+      "shortName": "Gyarmati Dezső",
+      "kind": "sportuszoda",
+      "city": "Budapest",
+      "district": "IV",
+      "geoQuery": "Gyarmati Dezső Sportuszoda Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "competition",
+        "ujpest",
+        "water-polo"
+      ],
+      "swimmerNote": "Újpest's competition pool."
+    },
+    {
+      "id": "bvsc-szonyi",
+      "name": "BVSC Szőnyi úti Sporttelep uszoda",
+      "shortName": "BVSC Szőnyi út",
+      "kind": "sportuszoda",
+      "city": "Budapest",
+      "district": "XIV",
+      "geoQuery": "BVSC uszoda Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": false,
+        "lanes": null
+      },
+      "tags": [
+        "club",
+        "zuglo",
+        "outdoor-lane-pool"
+      ],
+      "swimmerNote": "Club site in Zugló with public hours."
+    },
+    {
+      "id": "tuske-uszoda",
+      "name": "Tüske Uszoda",
+      "shortName": "Tüske",
+      "kind": "sportuszoda",
+      "city": "Budapest",
+      "district": "XI",
+      "geoQuery": "Tüskecsarnok Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "50m",
+        "university",
+        "ujbuda"
+      ],
+      "swimmerNote": "Next to Tüskecsarnok in Lágymányos; university and club usage. Map pin is the arena complex."
+    },
+    {
+      "id": "ujhegyi-uszoda",
+      "name": "Újhegyi Uszoda",
+      "shortName": "Újhegy",
+      "kind": "uszoda",
+      "city": "Budapest",
+      "district": "X",
+      "geoQuery": "Újhegyi uszoda Budapest",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "municipal",
+        "school-groups"
+      ],
+      "swimmerNote": "Kőbánya district pool on Újhegyi sétány; heavy school-group use on weekday mornings."
+    },
+    {
+      "id": "v8-szentendre",
+      "name": "V8 Uszoda és Szabadidőközpont (Vizes Nyolcas)",
+      "shortName": "V8 Szentendre",
+      "kind": "uszoda",
+      "city": "Szentendre",
+      "district": null,
+      "geoQuery": "Vizes Nyolcas Uszoda Szentendre",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 50,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "agglomeration",
+        "50m",
+        "family"
+      ],
+      "swimmerNote": "Large modern complex north of the city; a real option when Budapest pools are full."
+    },
+    {
+      "id": "erdi-uszoda",
+      "name": "Érdi Uszoda",
+      "shortName": "Érd",
+      "kind": "uszoda",
+      "city": "Érd",
+      "district": null,
+      "geoQuery": "Érdi uszoda Érd",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "agglomeration"
+      ],
+      "swimmerNote": "South-west agglomeration option."
+    },
+    {
+      "id": "godolloi-uszoda",
+      "name": "Gödöllői Városi Uszoda",
+      "shortName": "Gödöllő",
+      "kind": "uszoda",
+      "city": "Gödöllő",
+      "district": null,
+      "geoQuery": "Gödöllői uszoda Gödöllő",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "agglomeration"
+      ],
+      "swimmerNote": "North-east agglomeration option."
+    },
+    {
+      "id": "dunakeszi-uszoda",
+      "name": "Dömötör Zoltán Dunakeszi Sportuszoda",
+      "shortName": "Dunakeszi",
+      "kind": "uszoda",
+      "city": "Dunakeszi",
+      "district": null,
+      "geoQuery": "Dunakeszi Sportuszoda",
+      "operator": null,
+      "website": null,
+      "lanePool": {
+        "lengthM": 25,
+        "indoor": true,
+        "lanes": null
+      },
+      "tags": [
+        "agglomeration"
+      ],
+      "swimmerNote": "North agglomeration option."
+    }
+  ]
+}

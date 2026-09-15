@@ -1,0 +1,38 @@
+name: CI
+
+# Cheap guard rail: everything here runs without an API key, so a broken schema,
+# a malformed registry or a syntax error in the site is caught before it ships.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Check script syntax
+        run: |
+          for f in scripts/*.mjs scripts/lib/*.mjs docs/app.js; do
+            node --check "$f"
+          done
+
+      - name: Schema converts to JSON Schema
+        run: |
+          node --input-type=module -e '
+            const { PoolStatusSchema } = await import("./scripts/lib/schema.mjs");
+            const { zodOutputFormat } = await import("@anthropic-ai/sdk/helpers/zod");
+            const f = zodOutputFormat(PoolStatusSchema);
+            if (f.type !== "json_schema") throw new Error("unexpected output format: " + f.type);
+            console.log("schema OK");
+          '
+
+      - name: Registry validates and publishes
+        run: npm run build
