@@ -1,0 +1,20 @@
+# Cloudflare applies these to matching responses. The agent refreshes data once a day,
+# so the JSON is cached briefly and revalidated; the shell is cached a little longer.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/data/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600
+
+/*.css
+  Cache-Control: public, max-age=3600
+
+/*.js
+  Cache-Control: public, max-age=3600
+
+/
+  Cache-Control: public, max-age=300

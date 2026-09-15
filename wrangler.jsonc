@@ -1,0 +1,17 @@
+{
+  // Cloudflare Workers with Static Assets. There is no Worker script: docs/ is
+  // uploaded and served straight from Cloudflare's edge, which is all this site needs.
+  // Deploy with `npm run deploy` (or the GitHub Action in .github/workflows/deploy.yml).
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "malevuszoda",
+  "compatibility_date": "2026-09-15",
+  "assets": {
+    "directory": "./docs",
+    // Unmatched paths get the 404 page rather than index.html - this is a plain
+    // multi-file site, not a client-routed SPA.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

@@ -12,10 +12,15 @@
     "agent": "node scripts/agent.mjs",
     "agent:dry": "node scripts/agent.mjs --dry-run",
     "build": "node scripts/build.mjs",
-    "serve": "node scripts/serve.mjs"
+    "serve": "node scripts/serve.mjs",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.125.0",
     "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "wrangler": "^4.131.2"
   }
 }

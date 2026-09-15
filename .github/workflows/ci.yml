@@ -36,3 +36,7 @@ jobs:
 
       - name: Registry validates and publishes
         run: npm run build
+
+      - name: Cloudflare config is valid
+        # --dry-run needs no credentials, so config breakage is caught on every PR.
+        run: npx wrangler deploy --dry-run

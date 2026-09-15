@@ -33,6 +33,10 @@ docs/data/status.json       operational + swimmability per pool, with sources
         │  npm run build
         ▼
 docs/                       static site (Leaflet map, no build step)
+        │
+        │  npm run deploy
+        ▼
+Cloudflare Workers Static Assets
 ```
 
 The agent makes two calls per pool:
@@ -109,18 +113,52 @@ Levers, in the order worth pulling:
   summarising, which does not need the top tier.
 - `max_content_tokens` on the `web_fetch` tool is already capped at 20 000.
 
-## Deploying
+## Deploying (Cloudflare)
 
-The site is plain files with no build step, so GitHub Pages serves it directly:
+The site is plain files with no build step, deployed to **Cloudflare Workers Static
+Assets** — `docs/` is uploaded and served from the edge, with no Worker script.
 
-**Settings → Pages → Source: Deploy from a branch → `main` / `/docs`**
+One-time setup:
 
-Two workflows are included:
+```bash
+npx wrangler login          # or set CLOUDFLARE_API_TOKEN
+npm run deploy              # publishes to <name>.<subdomain>.workers.dev
+```
 
-- `.github/workflows/watch.yml` — runs the agent daily and commits the refreshed data.
-  Needs an `ANTHROPIC_API_KEY` repository secret. Also runs on demand, with inputs for
-  re-geocoding and for researching a single pool.
-- `.github/workflows/ci.yml` — syntax, schema and registry checks. Needs no API key.
+Check the config without publishing anything:
+
+```bash
+npm run deploy:dry
+npx wrangler dev            # serve exactly as Cloudflare will, including _headers
+```
+
+For CI deploys, add two repository secrets — **`CLOUDFLARE_API_TOKEN`** (with the
+*Edit Cloudflare Workers* template) and **`CLOUDFLARE_ACCOUNT_ID`**.
+
+Three workflows:
+
+| Workflow | Trigger | Needs secrets |
+|---|---|---|
+| `ci.yml` | every push / PR | none |
+| `deploy.yml` | push to `main` touching `docs/`, manual, or called by the watcher | Cloudflare |
+| `watch.yml` | daily cron, or manual | `ANTHROPIC_API_KEY` + Cloudflare |
+
+`deploy.yml` refuses to publish if the registry is empty, so a broken agent run cannot
+replace a working site with a blank one.
+
+One wrinkle worth knowing, since it is the kind of thing that fails silently: GitHub does
+**not** trigger workflows for pushes made with the default `GITHUB_TOKEN`. The watcher's
+data commit would therefore never fire `deploy.yml`'s `push` trigger. That is why
+`deploy.yml` also exposes `workflow_call` and the watcher invokes it directly after a
+commit that changed something.
+
+`docs/_headers` sets cache and security headers: data JSON is cached for 5 minutes with
+`stale-while-revalidate`, the shell a little longer.
+
+### GitHub Pages (alternative)
+
+The layout also works unchanged on Pages — **Settings → Pages → Deploy from a branch →
+`main` / `/docs`** — which is why the directory is `docs/` rather than `public/`.
 
 ## Adding a pool
 
@@ -138,8 +176,9 @@ fix the query or leave the entry out rather than inventing coordinates.
 ## Current state and known gaps
 
 Working: the registry (24 venues, all with verified OSM coordinates), the geocoder, the
-agent, the static site with map, filters, HU/EN toggle and per-pool sources, and both
-workflows. The pipeline has been exercised end to end in dry-run mode; the live research
+agent, the static site with map, filters, HU/EN toggle and per-pool sources, and all
+three workflows. Cloudflare serving was verified locally through `wrangler dev` —
+headers, caching, the 404 page and the full app. The pipeline has been exercised end to end in dry-run mode; the live research
 path has not yet been run against the real API.
 
 Known gaps, roughly in the order I'd tackle them:

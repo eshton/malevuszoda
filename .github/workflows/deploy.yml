@@ -1,0 +1,68 @@
+name: Deploy to Cloudflare
+
+# Deploys docs/ to Cloudflare Workers Static Assets.
+#
+# workflow_call matters here: the watcher commits refreshed data using the default
+# GITHUB_TOKEN, and pushes made with that token deliberately do NOT trigger further
+# workflows. So watch.yml calls this workflow directly instead of relying on `push`,
+# which would silently never fire and leave the site stale.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "wrangler.jsonc"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-cloudflare
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The watcher may have just pushed new data; take the tip of the branch.
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Publish registry into the site
+        run: npm run build
+
+      - name: Fail if the site has no data
+        run: |
+          for f in docs/data/pools.json docs/data/status.json; do
+            if [ ! -s "$f" ]; then
+              echo "::error::$f is missing or empty - refusing to deploy an empty site."
+              exit 1
+            fi
+          done
+          node -e '
+            const pools = require("./docs/data/pools.json").pools || [];
+            if (pools.length === 0) throw new Error("registry has no pools");
+            console.log(`deploying ${pools.length} pools`);
+          '
+
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
