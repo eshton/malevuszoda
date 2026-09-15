@@ -5,7 +5,7 @@
   "description": "Budapest swimming pool watcher - an agent that tracks which pools are open, closed, under renovation, and actually swimmable.",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "geocode": "node scripts/geocode.mjs",
